@@ -26,33 +26,17 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            MainScreen()
+            MessageCard(name = "Android")
         }
     }
 }
 @Composable
-fun MainScreen(){
-    Column (modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally){
-        Row(verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(5.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly) {
-            Button(onClick = { },
-                modifier = Modifier.padding(5.dp)) {
-                Text(text = "Decrement")
-            }
-            Text(text = "0")
-            Button(onClick = { }) {
-                Text(text = "Increment")
-            }
-        }
-    }
+fun MessageCard(name: String){
+    Text(text = "Hello $name")
+    
 }
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreView(){
-    MainScreen()
+    MessageCard(name = "Android")
 }
