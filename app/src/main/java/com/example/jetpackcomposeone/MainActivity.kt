@@ -16,6 +16,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -51,23 +53,36 @@ fun MessageCard(msg: com.example.jetpackcomposeone.Message){
                 .size(40.dp)
                 .clip(CircleShape)
                 .border(1.5.dp, MaterialTheme.colorScheme.secondary, CircleShape))
+
         Spacer(modifier = Modifier.width(8.dp))
 
         Column {
-            Text(text = msg.author,
+            Text(
+                text = msg.author,
                 color = MaterialTheme.colorScheme.secondary,
                 style = MaterialTheme.typography.titleSmall)
 
             Spacer(modifier = Modifier.height(4.dp))
 
             Surface(shape = MaterialTheme.shapes.medium, shadowElevation = 1.dp) {
-                Text(text = msg.body,
-                    modifier = Modifier.padding(all = 1.dp),
+                Text(
+                    text = msg.body,
+                    modifier = Modifier.padding(all = 4.dp),
                     style = MaterialTheme.typography.bodyMedium)
             }
         }
     }
     
+}
+
+@Composable
+fun Conversation(messages: List<com.example.jetpackcomposeone.Message>){
+    LazyColumn {
+        items(messages){
+            message->
+            MessageCard(msg = message)
+        }
+    }
 }
 @Preview(showBackground = true)
 @Composable
